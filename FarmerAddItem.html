@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Product</title>
+<!-- <link rel="stylesheet" href="styles.css"> -->
+<style>
+    * {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus {
+  border-color: #007bff;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1 >Add Product</h1>
+  
+  <form id="productForm">
+    <div class="form-group">
+      <label for="productName">Product Name:</label>
+      <input type="text" id="productName" name="productName" required>
+    </div>
+    <div class="form-group">
+      <label for="productPrice">Price (INR):</label>
+      <input type="number" id="productPrice" name="productPrice" min="0" required>
+    </div>
+    <div class="form-group">
+      <label for="productStock">Stock:</label>
+      <input type="number" id="productStock" name="productStock" min="0" required>
+    </div>
+    <div class="form-group">
+      <label for="productDescription">Description:</label>
+      <textarea id="productDescription" name="productDescription" rows="4" required></textarea>
+    </div>
+    <button type="submit">Add Product</button>
+  </form>
+</div>
+
+<script >
+document.getElementById('productForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const productName = document.getElementById('productName').value;
+  const productPrice = parseFloat(document.getElementById('productPrice').value);
+  const productStock = parseInt(document.getElementById('productStock').value);
+  const productDescription = document.getElementById('productDescription').value;
+
+  // Validate product price and stock
+  if (isNaN(productPrice) || isNaN(productStock) || productPrice <= 0 || productStock <= 0) {
+    alert('Please enter a valid price and stock quantity.');
+    return;
+  }
+
+  // Create new product object
+  const newProduct = {
+    name: productName,
+    price: productPrice,
+    stock: productStock,
+    description: productDescription
+  };
+
+  // You can now do whatever you want with the new product object, like adding it to a list or sending it to a server
+  console.log('New Product:', newProduct);
+
+  // Reset the form
+  document.getElementById('productForm').reset();
+});
+
+</script>
+</body>
+</html>

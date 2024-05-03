@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Chatbot</title>
+</head>
+<body>
+  <input type="text" id="user-input" placeholder="Enter your message">
+  <button id="send-btn">Send</button>
+  <br>
+  <div id="response"></div>
+
+  <script>
+    const userInputField = document.getElementById('user-input');
+    const sendButton = document.getElementById('send-btn');
+    const responseDiv = document.getElementById('response');
+
+    sendButton.addEventListener('click', async () => {
+      const userInput = userInputField.value.trim();
+
+      if (userInput === '') {
+        return; // Do nothing if input is empty
+      }
+
+      try {
+        const response = await fetch('/C:\Users\Bhumika\Documents\Google_AI_Hackathon_Farmer\server.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ userInput })
+        });
+
+        const data = await response.json();
+        responseDiv.textContent = data.responseText;
+        userInputField.value = ''; // Clear input field after successful response
+      } catch (error) {
+        console.error(error);
+        responseDiv.textContent = 'Error: Failed to send message';
+      }
+    });
+  </script>
+</body>
+</html>
