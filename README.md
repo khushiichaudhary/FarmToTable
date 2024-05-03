@@ -92,9 +92,6 @@ We welcome contributions from the community to enhance FarmBot's capabilities an
 
 - Submit a pull request with a clear description of your changes and the problem they solve.
 
-## Support
-
-For any questions, issues, or feedback, please [open an issue](https://github.com/your-username/farmbot/issues) on GitHub. We're here to help!
 
 ### License:
 
